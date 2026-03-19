@@ -1,10 +1,9 @@
 (function() {
     'use strict';
 
-    // Constants & Configuration
+    // 1. Data Definitions
     const IMAGE_PATH = '/UserData/hansomang/Layouts/hansomang_Layout/images';
 
-    // Mission Chars Data
     const missionLines = [
         { parts: [{ text: '우리는 ', bold: false }, { text: '십자가', bold: true }, { text: '와 ', bold: false }, { text: '성령', bold: true }, { text: '의 능력을 통한 거룩함과', bold: false }] },
         { parts: [{ text: '아버지의 마음과 비전', bold: true }, { text: '을 품은 성숙한 성품을 이루고,', bold: false }] },
@@ -13,6 +12,14 @@
         { parts: [{ text: '12제자를 세워', bold: true }, { text: ' 도시를 복음으로 정복하고,', bold: false }] },
         { parts: [{ text: '한국교회를 ', bold: false }, { text: '깨우며', bold: true }, { text: ' 한민족을 ', bold: false }, { text: '살리고', bold: true }, { text: ' 열방을 ', bold: false }, { text: '구원하는', bold: true }] },
         { parts: [{ text: '예수님이 꿈꾸신 바로 그 교회', bold: true }, { text: '를 이룬다.', bold: false }] },
+    ];
+
+    const nextGenTabs = [
+        '해피(영아,유아,유치)',
+        '드림(유년,초등)',
+        '영어예배,어와나',
+        '청소년(중등,고등)',
+        '소망부(어린이,소망부)',
     ];
 
     const nextGenData = [
@@ -51,31 +58,23 @@
         { name: '디아코니아', sub: 'Diakonia', image: `${IMAGE_PATH}/26d20063ef5b8340954172ff327de7988411f6e4.png` },
     ];
 
-    const galleryRow1 = [
+    const galleryImages = [
         `${IMAGE_PATH}/61ecdd1e6a0d4dc87cb2481a6a9304d5744a88aa.png`,
         `${IMAGE_PATH}/5b0a8feaef4217e425516a9bf369592310de3b98.png`,
         `${IMAGE_PATH}/a643fde8dd8002ef7da30276b3f55227921ac771.png`,
         `${IMAGE_PATH}/44c8a6aebbc84727c55e2e6d7c642d14484f4ce2.png`,
-        'https://images.unsplash.com/photo-1765947382559-93260e5d6c89?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb21tdW5pdHklMjBjaHVyY2glMjBmZWxsb3dzaGlwJTIwZ2F0aGVyaW5nfGVufDF8fHx8MTc3MzgzNTc3N3ww&ixlib=rb-4.1.0&q=80&w=1080',
-        'https://images.unsplash.com/photo-1745357081650-e0857e7cd6ae?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaHVyY2glMjBwcmFpc2UlMjBtdXNpYyUyMHdvcnNoaXAlMjBiYW5kfGVufDF8fHx8MTc3MzgzNTc4NHww&ixlib=rb-4.1.0&q=80&w=1080',
-        'https://images.unsplash.com/photo-1751666526244-40239a251eae?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb21tdW5pdHklMjB2b2x1bnRlZXIlMjBzZXJ2aWNlfGVufDF8fHx8MTc3MzgzNTc4NHww&ixlib=rb-4.1.0&q=80&w=1080',
-        'https://images.unsplash.com/photo-1566855189670-7502f9c7f03b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaHJpc3RpYW4lMjBwcmF5ZXIlMjBoYW5kcyUyMGJpYmxlfGVufDF8fHx8MTc3MzgzNTc4N3ww&ixlib=rb-4.1.0&q=80&w=1080'
-    ];
-
-    const galleryRow2 = [
         `${IMAGE_PATH}/f2322b4c979f55cbc1bd5e3710293e66c2bd3092.png`,
         `${IMAGE_PATH}/4e3a2c304d66e962d04b543c5ea42cc92cd3e08e.png`,
         `${IMAGE_PATH}/13fcfe4a423320304c375613681f9ece08692553.png`,
-        `${IMAGE_PATH}/b31b4ef018cc5abfcc9d24855b3ec760b609a26d.png`,
-        `${IMAGE_PATH}/26d20063ef5b8340954172ff327de7988411f6e4.png`,
-        'https://images.unsplash.com/photo-1765947382559-93260e5d6c89?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb21tdW5pdHklMjBjaHVyY2glMjBmZWxsb3dzaGlwJTIwZ2F0aGVyaW5nfGVufDF8fHx8MTc3MzgzNTc3N3ww&ixlib=rb-4.1.0&q=80&w=1080',
-        'https://images.unsplash.com/photo-1750109060920-4624a080570d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaHVyY2glMjBidWlsZGluZyUyMGFyY2hpdGVjdHVyZXxlbnwxfHx8fDE3NzM3MDkxNDF8MA&ixlib=rb-4.1.0&q=80&w=1080',
-        'https://images.unsplash.com/photo-1702905709201-0950a1a3190f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaGlsZHJlbiUyMHdvcnNoaXAlMjBzdW5kYXklMjBzY2hvb2x8ZW58MXx8fHwxNzczODM1Nzg3fDA&ixlib=rb-4.1.0&q=80&w=1080'
+        `${IMAGE_PATH}/b31b4ef018cc5abfcc9d24855b3ec760b609a26d.png`
     ];
 
-    // Initialize Page
-    document.addEventListener('DOMContentLoaded', () => {
-        initLoadingSequence();
+    // 2. Initialization
+    function init() {
+        const root = document.querySelector('.cms-content-root');
+        if (!root) return;
+
+        initLoadingSequence(root);
         initHeroSlider();
         initVisionMissionScroll();
         initCardStackScroll();
@@ -83,12 +82,21 @@
         initMissionSlider();
         initGallery();
         initScrollAnimations();
-    });
+    }
 
-    // 1. Loading Sequence
-    function initLoadingSequence() {
-        const root = document.querySelector('.cms-content-root');
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+
+    // 3. Components
+    function initLoadingSequence(root) {
         const mainSite = document.getElementById('main-site');
+        const loadingPage = document.getElementById('loading-page');
+        if (!mainSite || !loadingPage) return;
+
+        document.body.classList.add('no-scroll');
 
         setTimeout(() => root.classList.add('loading-step-1'), 200);
         setTimeout(() => root.classList.add('loading-step-2'), 600);
@@ -97,19 +105,14 @@
         setTimeout(() => root.classList.add('loading-step-5'), 2100);
         setTimeout(() => root.classList.add('loading-finished'), 2900);
         setTimeout(() => {
-            const loadingPage = document.getElementById('loading-page');
             loadingPage.classList.add('hidden-block');
             mainSite.classList.remove('main-site-hidden');
             mainSite.classList.add('main-site-visible');
             document.body.classList.remove('no-scroll');
         }, 3400);
-
-        document.body.classList.add('no-scroll');
     }
 
-    // 2. Hero Slider
     function initHeroSlider() {
-        let current = 0;
         const slides = document.querySelectorAll('.hero-slide');
         const titles = document.querySelectorAll('.hero-title-group');
         const dots = document.querySelectorAll('.hero-dot');
@@ -117,6 +120,10 @@
         const nextBtn = document.getElementById('hero-next');
         const menuToggle = document.getElementById('mobile-menu-toggle');
         const mobileMenu = document.getElementById('hero-mobile-menu');
+
+        if (!slides.length) return;
+
+        let current = 0;
 
         function showSlide(index) {
             slides[current].classList.remove('active');
@@ -130,23 +137,25 @@
             dots[current].classList.add('active');
         }
 
-        nextBtn.addEventListener('click', () => showSlide(current + 1));
-        prevBtn.addEventListener('click', () => showSlide(current - 1));
+        if (prevBtn) prevBtn.addEventListener('click', () => showSlide(current - 1));
+        if (nextBtn) nextBtn.addEventListener('click', () => showSlide(current + 1));
         dots.forEach((dot, i) => dot.addEventListener('click', () => showSlide(i)));
 
-        menuToggle.addEventListener('click', () => {
-            mobileMenu.classList.toggle('active');
-        });
+        if (menuToggle && mobileMenu) {
+            menuToggle.addEventListener('click', () => {
+                mobileMenu.classList.toggle('active');
+            });
+        }
 
         setInterval(() => showSlide(current + 1), 5000);
     }
 
-    // 3. Vision Mission Scroll
     function initVisionMissionScroll() {
-        const sticky = document.querySelector('.vision-sticky');
+        const trigger = document.getElementById('vision-trigger');
+        const sticky = trigger ? trigger.querySelector('.vision-sticky') : null;
         const container = document.getElementById('mission-text-container');
         const quickMenuItems = document.querySelectorAll('.quick-menu-item');
-        const trigger = document.getElementById('vision-trigger');
+        if (!trigger || !container) return;
 
         // Build characters
         let charIndex = 0;
@@ -173,20 +182,21 @@
             const range = trigger.offsetHeight - viewH;
             if (range <= 0) return;
 
-            let progress = Math.max(0, Math.min(1, -rect.top / range));
+            const progress = Math.max(0, Math.min(1, -rect.top / range));
 
             if (progress <= 0.6) {
                 const charProgress = progress / 0.6;
                 const activeCount = Math.round(totalChars * charProgress);
                 chars.forEach(c => {
-                    if (parseInt(c.dataset.idx) < activeCount) c.classList.add('active');
+                    const idx = parseInt(c.dataset.idx);
+                    if (idx < activeCount) c.classList.add('active');
                     else c.classList.remove('active');
                 });
-                sticky.classList.remove('is-active');
+                if (sticky) sticky.classList.remove('is-active');
                 quickMenuItems.forEach(item => item.classList.remove('visible'));
             } else {
                 chars.forEach(c => c.classList.add('active'));
-                sticky.classList.add('is-active');
+                if (sticky) sticky.classList.add('is-active');
                 if (progress >= 0.7) {
                     quickMenuItems.forEach(item => item.classList.add('visible'));
                 }
@@ -194,9 +204,9 @@
         });
     }
 
-    // 4. Card Stack Scroll
     function initCardStackScroll() {
         const wrapper = document.getElementById('message-stack-card');
+        if (!wrapper) return;
 
         window.addEventListener('scroll', () => {
             const rect = wrapper.getBoundingClientRect();
@@ -211,10 +221,12 @@
         });
     }
 
-    // 5. Worship Tabs
     function initWorshipTabs() {
-        const tabs = document.querySelectorAll('#nextgen-tabs .tab-btn');
+        const tabList = document.getElementById('nextgen-tabs');
         const container = document.getElementById('nextgen-table-container');
+        if (!tabList || !container) return;
+
+        const tabs = tabList.querySelectorAll('.tab-btn');
 
         function renderTable(index) {
             const data = nextGenData[index] || nextGenData[0];
@@ -276,20 +288,23 @@
             btn.addEventListener('click', () => {
                 tabs.forEach(t => t.classList.remove('active'));
                 btn.classList.add('active');
-                renderTable(parseInt(btn.dataset.tab));
+                const idx = parseInt(btn.getAttribute('data-tab'));
+                renderTable(idx);
             });
         });
 
         renderTable(0);
     }
 
-    // 6. Mission Slider
     function initMissionSlider() {
         const trigger = document.getElementById('mission-scroll-trigger');
-        const sticky = document.querySelector('.mission-sticky');
+        const sticky = trigger ? trigger.querySelector('.mission-sticky') : null;
         const cardList = document.getElementById('mission-card-list');
         const dotsContainer = document.getElementById('mission-dots');
-        const tabs = document.querySelectorAll('.mission-tab');
+        const tabList = document.getElementById('mission-category-tabs');
+        if (!cardList || !dotsContainer || !tabList) return;
+
+        const tabs = tabList.querySelectorAll('.mission-tab');
         let current = 0;
 
         // Render Cards
@@ -335,10 +350,21 @@
             inner.appendChild(overlay);
             inner.appendChild(textGroup);
             div.appendChild(inner);
+
+            // Clicks for navigation
+            div.addEventListener('click', () => {
+                const total = missionCardsData.length;
+                let offset = ((i - current) % total + total) % total;
+                if (offset > total / 2) offset -= total;
+                if (offset === -1) { current = (current - 1 + total) % total; updateSlider(); }
+                if (offset === 1) { current = (current + 1) % total; updateSlider(); }
+            });
+
             cardList.appendChild(div);
 
             const dot = document.createElement('div');
             dot.className = 'mission-dot' + (i === 0 ? ' active' : '');
+            dot.addEventListener('click', () => { current = i; updateSlider(); });
             dotsContainer.appendChild(dot);
         });
 
@@ -353,37 +379,44 @@
                 card.dataset.offset = offset;
                 if (offset < -2) card.dataset.offsetOut = 'left';
                 else if (offset > 2) card.dataset.offsetOut = 'right';
-                else delete card.dataset.offsetOut;
+                else {
+                    delete card.dataset.offsetOut;
+                }
             });
 
             dots.forEach((d, i) => d.classList.toggle('active', i === current));
             tabs.forEach((t, i) => t.classList.toggle('active', i === current));
         }
 
-        window.addEventListener('scroll', () => {
-            const rect = trigger.getBoundingClientRect();
-            const viewH = window.innerHeight;
-            const total = trigger.offsetHeight - viewH;
-            const progress = total > 0 ? Math.max(0, Math.min(1, -rect.top / total)) : 0;
+        if (trigger && sticky) {
+            window.addEventListener('scroll', () => {
+                const rect = trigger.getBoundingClientRect();
+                const viewH = window.innerHeight;
+                const total = trigger.offsetHeight - viewH;
+                const progress = total > 0 ? Math.max(0, Math.min(1, -rect.top / total)) : 0;
 
-            if (progress > 0.48) {
-                sticky.classList.add('is-active');
-            } else {
-                sticky.classList.remove('is-active');
-            }
-        });
+                if (progress > 0.48) {
+                    sticky.classList.add('is-active');
+                } else {
+                    sticky.classList.remove('is-active');
+                }
+            });
+        }
 
-        document.getElementById('mission-next').addEventListener('click', () => { current = (current + 1) % cards.length; updateSlider(); });
-        document.getElementById('mission-prev').addEventListener('click', () => { current = (current - 1 + cards.length) % cards.length; updateSlider(); });
-        tabs.forEach(t => t.addEventListener('click', () => { current = parseInt(t.dataset.cat); updateSlider(); }));
+        const nextBtn = document.getElementById('mission-next');
+        const prevBtn = document.getElementById('mission-prev');
+        if (nextBtn) nextBtn.addEventListener('click', () => { current = (current + 1) % cards.length; updateSlider(); });
+        if (prevBtn) prevBtn.addEventListener('click', () => { current = (current - 1 + cards.length) % cards.length; updateSlider(); });
+
+        tabs.forEach((t, i) => t.addEventListener('click', () => { current = i; updateSlider(); }));
 
         updateSlider();
     }
 
-    // 7. Gallery
     function initGallery() {
         const track1 = document.getElementById('gallery-track-1');
         const track2 = document.getElementById('gallery-track-2');
+        if (!track1 || !track2) return;
 
         const fillTrack = (track, images) => {
             [...images, ...images].forEach(src => {
@@ -394,11 +427,11 @@
             });
         };
 
-        fillTrack(track1, galleryRow1);
-        fillTrack(track2, galleryRow2);
+        const half = Math.ceil(galleryImages.length / 2);
+        fillTrack(track1, galleryImages.slice(0, half));
+        fillTrack(track2, galleryImages.slice(half));
     }
 
-    // 8. Scroll Animations (Intersection Observer)
     function initScrollAnimations() {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
